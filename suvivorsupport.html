@@ -1,0 +1,34 @@
+<head>
+  <title>suvivorsupport</title>
+  <script type="text/javascript" src="http://cdn.icecomm.io/icecomm.js"></script>
+</head>
+
+<body>
+  <h1>This is the Egan Version of Skype</h1>
+
+  {{> hello}}
+  <button></button>
+ 
+</body>
+
+<template name="hello">
+
+ <script type="text/javascript">
+  	var comm = new Icecomm('aicMX22XiyczFnUGEegYwpePDAJbvviuGwKZ04WTJOJSCaFS');
+
+  comm.connect('custom room', {audio: true});
+
+  comm.on('connected', function(options) {
+     document.body.appendChild(options.video);
+  });
+
+  comm.on('local', function(options) {
+    localVideo.src = options.stream;
+  });
+
+  comm.on('disconnect', function(options) {
+    document.getElementById(options.callerID).remove();
+  });
+  </script>
+  <video id="localVideo" autoplay></video>
+</template>
